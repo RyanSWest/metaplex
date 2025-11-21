@@ -1,39 +1,27 @@
-import { AppProviders } from '@/components/app-providers.tsx'
-import { AppLayout } from '@/components/app-layout.tsx'
-import { RouteObject, useRoutes } from 'react-router'
-import { lazy } from 'react'
+import { NFTMintComponent } from './components/NftMint';
+import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { clusterApiUrl } from '@solana/web3.js';
+import { useMemo } from 'react';
+import Gallery from './components/gallery.tsx'
 
-const links = [
-  //
-  { label: 'Home', path: '/' },
-  { label: 'Account', path: '/account' },
-  { label: 'Counter Program', path: '/counter' },
-]
+import '@solana/wallet-adapter-react-ui/styles.css';
 
-const LazyAccountIndex = lazy(() => import('@/components/account/account-index-feature'))
-const LazyAccountDetail = lazy(() => import('@/components/account/account-detail-feature'))
-const LazyCounter = lazy(() => import('@/components/counter/counter-feature'))
-const LazyDashboard = lazy(() => import('@/components/dashboard/dashboard-feature'))
+function App() {
+  const endpoint = useMemo(() => clusterApiUrl('devnet'), []);
+  const wallets = useMemo(() => [new PhantomWalletAdapter()], []);
 
-const routes: RouteObject[] = [
-  { index: true, element: <LazyDashboard /> },
-  {
-    path: 'account',
-    children: [
-      { index: true, element: <LazyAccountIndex /> },
-      { path: ':address', element: <LazyAccountDetail /> },
-    ],
-  },
-  { path: 'counter', element: <LazyCounter /> },
-]
-
-console.log({ links, routes })
-
-export function App() {
-  const router = useRoutes(routes)
   return (
-    <AppProviders>
-      <AppLayout links={links}>{router}</AppLayout>
-    </AppProviders>
-  )
+    <ConnectionProvider endpoint={endpoint}>
+      <WalletProvider wallets={wallets} autoConnect>
+        <WalletModalProvider>
+           <NFTMintComponent />
+           <Gallery/>
+        </WalletModalProvider>
+      </WalletProvider>
+    </ConnectionProvider>
+  );
 }
+
+export default App;
