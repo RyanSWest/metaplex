@@ -1,14 +1,12 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { 
   createNft, 
-  mplTokenMetadata,
-  fetchDigitalAsset
+  mplTokenMetadata
 } from '@metaplex-foundation/mpl-token-metadata';
 import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
 import { 
   generateSigner, 
-  percentAmount,
-  publicKey as umiPublicKey
+  percentAmount
 } from '@metaplex-foundation/umi';
 import { walletAdapterIdentity } from '@metaplex-foundation/umi-signer-wallet-adapters';
 
@@ -17,7 +15,6 @@ export interface UmiNFTMetadata {
   symbol: string;
   uri: string;
   sellerFeeBasisPoints: number;
-  collectionAddress?: string;
 }
 
 export function useUmiNFTMint() {
@@ -32,10 +29,12 @@ export function useUmiNFTMint() {
     umi.use(walletAdapterIdentity(wallet));
 
     console.log('✅ Set up UMI instance');
-
+    console.log('RPC', connection.rpcEndpoint);
+    
     const mint = generateSigner(umi);
+    console.log('🔑 Generated mint address:', mint.publicKey);
 
-    const nftOptions: any = {
+    const nftOptions = {
       mint,
       name: metadata.name,
       symbol: metadata.symbol,
@@ -43,28 +42,18 @@ export function useUmiNFTMint() {
       sellerFeeBasisPoints: percentAmount(metadata.sellerFeeBasisPoints / 100),
     };
 
-    if (metadata.collectionAddress) {
-      nftOptions.collection = {
-        key: umiPublicKey(metadata.collectionAddress),
-        verified: false,
-      };
-    }
-
     console.log('🎨 Creating NFT...');
+    
+    await createNft(umi, nftOptions).sendAndConfirm(umi);
 
-    const transaction = await createNft(umi, nftOptions);
-    await transaction.sendAndConfirm(umi);
-
-    const createdNft = await fetchDigitalAsset(umi, mint.publicKey);
-
-    const explorerLink = `https://explorer.solana.com/address/${createdNft.mint.publicKey}?cluster=devnet`;
+    const explorerLink = `https://explorer.solana.com/address/${mint.publicKey}?cluster=devnet`;
 
     console.log('✅ NFT Created!', explorerLink);
 
     return {
-      mint: createdNft.mint.publicKey.toString(),
-      name: createdNft.metadata.name,
-      uri: createdNft.metadata.uri,
+      mint: mint.publicKey.toString(),
+      name: metadata.name,
+      uri: metadata.uri,
       explorerLink,
     };
   };

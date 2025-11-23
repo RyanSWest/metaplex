@@ -1,8 +1,7 @@
 
 
 import {useState,useEffect} from 'react';
-
-
+ 
 const Gallery =()=> {
 
 const [pics,setPics] =useState([])
@@ -16,13 +15,13 @@ useEffect(() => {
   console.log("Fetching from:", url);
   
 
-//   fetch(sushi)
-//   .then(res=> res.json)
-//   .then(data => {
-//     console.log('THis===>',data);
-//     setGuy(data)
-//   })
-//   .catch(err=> console.error("ERror",err))
+  fetch(sushi)
+  .then(res=> res.json)
+  .then(data => {
+    console.log('THis===>',data);
+    setGuy(data)
+  })
+  .catch(err=> console.error("ERror",err))
 
 
 //   fetch(url)
