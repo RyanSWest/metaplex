@@ -7,7 +7,10 @@ import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import WalletButton from './WalletButton.tsx';
 // import {createCollection} from useCreateCollection
 // import 'gallery.css'
-import { useCreateCollection } from './useCreateCollection';export function NFTMintComponent() {
+import { useCreateCollection } from './useCreateCollection';
+
+
+export function NFTMintComponent() {
   const { mintNFT } = useUmiNFTMint();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
@@ -281,7 +284,7 @@ meta(id)
 
       <section>
 
-<div className="gallery-grid">
+{/* <div className="gallery-grid">
   {gallery.map((item: any) => {
     const imageUrl = item.type === 'file' 
       ? `https://maybeart.app${item.imageUrl}` 
@@ -309,7 +312,7 @@ meta(id)
       </div>
     );
   })}
-</div>
+</div> */}
 
 
 {gallery.map((item: any) => (

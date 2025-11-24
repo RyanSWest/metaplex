@@ -4,8 +4,9 @@ import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
 import { useMemo } from 'react';
-import Gallery from './components/gallery.jsx'
-
+// import Gallery from './components/gallery.jsx'
+import { AppHeader } from './components/app-header';
+import { AppLayout } from './components/app-layout';
 import '@solana/wallet-adapter-react-ui/styles.css';
 
 function App() {
@@ -45,8 +46,10 @@ const wallets = useMemo(() => [new PhantomWalletAdapter()], []);
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
+
+          {/* <AppHeader/> */}
            <NFTMintComponent />
-           <Gallery/>
+           
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
