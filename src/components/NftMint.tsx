@@ -6,7 +6,7 @@ import { PublicKey } from '@solana/web3.js';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import WalletButton from './WalletButton.tsx';
 // import {createCollection} from useCreateCollection
-import 'gallery.css'
+// import 'gallery.css'
 import { useCreateCollection } from './useCreateCollection';export function NFTMintComponent() {
   const { mintNFT } = useUmiNFTMint();
   const [loading, setLoading] = useState(false);

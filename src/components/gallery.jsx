@@ -1,7 +1,7 @@
  
  
  
- const GridGallery = ()=> {<Container fluid className="p-8">
+ const Gallery = ()=> {<Container fluid className="p-8">
   {/* Color Mode Selector */}
   <div className="flex justify-center mb-6">
     <div className="inline-flex rounded-lg border border-gray-300 p-1 bg-white">
@@ -104,4 +104,4 @@
   </div>
 </Container>}
 
-export default GridGallery
+export default Gallery

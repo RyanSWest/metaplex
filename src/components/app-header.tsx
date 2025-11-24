@@ -6,7 +6,7 @@ import { ClusterUiSelect } from './cluster/cluster-ui'
 import { WalletButton } from '@/components/solana/solana-provider'
 import { Link, useLocation } from 'react-router'
 
-export function AppHeader({ links = [] }: { links: { label: string; path: string }[] }) {
+export function AppHeader({ links = [{ label: 'Upload Music', path: 'https://biz.maybeart.app' }] }: { links: { label: string; path: string }[] }) {
   const { pathname } = useLocation()
   const [showMenu, setShowMenu] = useState(false)
 
