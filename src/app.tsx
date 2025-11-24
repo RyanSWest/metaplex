@@ -4,7 +4,7 @@ import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
 import { useMemo } from 'react';
-import Gallery from './components/gallery.tsx'
+import Gallery from './components/gallery.jsx'
 
 import '@solana/wallet-adapter-react-ui/styles.css';
 
@@ -30,9 +30,9 @@ function App() {
 
 //##############################DEVNET######################
 
-const endpoint ='https://devnet.helius-rpc.com/?api-key=200d3c22-0618-44c6-b928-768bbd9f8aef'
+// const endpoint ='https://devnet.helius-rpc.com/?api-key=200d3c22-0618-44c6-b928-768bbd9f8aef'
 
-// const endpoint ='https://mainnet.helius-rpc.com/?api-key=200d3c22-0618-44c6-b928-768bbd9f8aef'
+const endpoint ='https://mainnet.helius-rpc.com/?api-key=200d3c22-0618-44c6-b928-768bbd9f8aef'
 //  https://dataseed.helioschain.network	
 
 

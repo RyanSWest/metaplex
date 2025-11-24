@@ -6,6 +6,7 @@ import { PublicKey } from '@solana/web3.js';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import WalletButton from './WalletButton.tsx';
 // import {createCollection} from useCreateCollection
+import 'gallery.css'
 import { useCreateCollection } from './useCreateCollection';export function NFTMintComponent() {
   const { mintNFT } = useUmiNFTMint();
   const [loading, setLoading] = useState(false);
@@ -280,7 +281,35 @@ meta(id)
 
       <section>
 
-
+<div className="gallery-grid">
+  {gallery.map((item: any) => {
+    const imageUrl = item.type === 'file' 
+      ? `https://maybeart.app${item.imageUrl}` 
+      : item.url;
+    
+    const isSelected = selectedImage?.id === item.id;
+    
+    return (
+      <div 
+        key={item.id}
+        className={`gallery-item ${isSelected ? 'selected' : ''}`}
+        onClick={() => {
+          setSelectedImage(item);
+          setId(item.id);
+          setUri(`${API}${item.id}`);
+          setName(item.title);
+          setSymbol('ART');
+        }}
+      >
+        <img src={imageUrl} alt={item.title} />
+        <div className="gallery-info">
+          <h4>{item.title}</h4>
+          <p>{item.description}</p>
+        </div>
+      </div>
+    );
+  })}
+</div>
 
 
 {gallery.map((item: any) => (

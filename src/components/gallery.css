@@ -1,0 +1,107 @@
+/* Gallery Grid Override */
+.gallery-container {
+  padding: 2rem !important;
+}
+
+.gallery-row {
+  gap: 1.5rem !important;
+}
+
+/* Card Base Styles - Override Solana */
+.gallery-card {
+  border: 2px solid #945c88 !important;
+  border-radius: 10px !important;
+  background: white !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5) !important;
+}
+
+/* Purple Theme */
+.gallery-card.selected-purple {
+  border: 3px solid #9945FF !important;
+  background: #f0e6ff !important;
+  box-shadow: 0 0 25px rgba(153, 69, 255, 0.8) !important;
+  transform: scale(1.02) !important;
+}
+
+/* Cyan Theme */
+.gallery-card.selected-cyan {
+  border: 3px solid #22d3ee !important;
+  background: #e0f7ff !important;
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.8) !important;
+  transform: scale(1.02) !important;
+}
+
+/* Green Theme */
+.gallery-card.selected-green {
+  border: 3px solid #10b981 !important;
+  background: #d1fae5 !important;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.8) !important;
+  transform: scale(1.02) !important;
+}
+
+/* Card Image */
+.gallery-card img,
+.gallery-card .card-img-top {
+  height: 200px !important;
+  object-fit: cover !important;
+  width: 100% !important;
+  border-radius: 0 !important;
+}
+
+/* Card Body */
+.gallery-card .card-body {
+  padding: 1rem !important;
+  background: transparent !important;
+}
+
+/* Card Title */
+.gallery-card .card-title {
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 0.5rem !important;
+  color: #333 !important;
+}
+
+.gallery-card.selected-purple .card-title {
+  color: #a855f7 !important;
+  font-weight: bold !important;
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.5) !important;
+}
+
+.gallery-card.selected-cyan .card-title {
+  color: #06b6d4 !important;
+  font-weight: bold !important;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.5) !important;
+}
+
+.gallery-card.selected-green .card-title {
+  color: #059669 !important;
+  font-weight: bold !important;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.5) !important;
+}
+
+/* Card Text */
+.gallery-card .card-text {
+  color: #666 !important;
+  font-size: 0.9rem !important;
+  margin: 0 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gallery-container {
+    padding: 1rem !important;
+  }
+  
+  .gallery-card img,
+  .gallery-card .card-img-top {
+    height: 150px !important;
+  }
+}
